@@ -42,7 +42,9 @@ def infer_model(frames, model):
     width = 640
     dists = [-1]*2
     ball_track = [(None,None)]*2
+    print(len(frames))
     for num in tqdm(range(2, len(frames))):
+        print("Inferring: ", num)
         img = cv2.resize(frames[num], (width, height))
         img_prev = cv2.resize(frames[num-1], (width, height))
         img_preprev = cv2.resize(frames[num-2], (width, height))
@@ -165,17 +167,17 @@ if __name__ == '__main__':
     parser.add_argument('--video_out_path', type=str, help='path to output video')
     parser.add_argument('--extrapolation', action='store_true', help='whether to use ball track extrapolation')
     args = parser.parse_args()
-    
+    print("reading model")
     model = BallTrackerNet()
     device = 'cuda'
     model.load_state_dict(torch.load(args.model_path, map_location=device))
     model = model.to(device)
     model.eval()
-    
+    print("model loaded, reading video")
     frames, fps = read_video(args.video_path)
     ball_track, dists = infer_model(frames, model)
     ball_track = remove_outliers(ball_track, dists)    
-    
+    print("video read, writing output video")
     if args.extrapolation:
         subtracks = split_track(ball_track)
         for r in subtracks:
