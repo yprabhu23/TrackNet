@@ -53,6 +53,11 @@ https://drive.google.com/file/d/1XEYZ4myUN7QT-NeBYJI0xteLsvs-ZAOl/view?usp=shari
 ![](pics/video_infer.gif)
 Run `python infer_on_video.py <args>` to launch inference on the video. 
 
+## Live inference
+
+python live_feed.py --model_path model_best.pt --source /dev/video0 --capture_w 1280 --capture_h 720 --capture_fps 60 --show
+
+
 ## Reference
 [https://arxiv.org/abs/1907.03698](https://arxiv.org/abs/1907.03698) <br>
 TrackNet: A Deep Learning Network for Tracking High-speed and Tiny Objects in Sports Applications
