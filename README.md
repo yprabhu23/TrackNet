@@ -55,7 +55,12 @@ Run `python infer_on_video.py <args>` to launch inference on the video.
 
 ## Live inference
 ```
-python live_feed.py --model_path model_best.pt --source /dev/video0 --capture_w 1280 --capture_h 720 --capture_fps 60 --show
+python live_feed.py --model_path model_best.pt \
+ --source /dev/video0 \
+ --capture_w 1280 \
+ --capture_h 720 \
+ --capture_fps 60 \
+ --show
 ```
 
 
